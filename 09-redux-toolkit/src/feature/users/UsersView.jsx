@@ -10,7 +10,7 @@ const UsersView = () => {
 
   useEffect(() => {
     dispatch(fetchUserRequest(postsId));
-  }, []);
+  }, [postsId]);
 
   if (loading) return <div>Loading...</div>;
   if (errMsg) return <div>Error: {errMsg}</div>;
@@ -23,10 +23,7 @@ const UsersView = () => {
         value={postsId}
         onChange={(e) => setPostsId(e.target.value)}
       />
-      <button onClick={() => dispatch(fetchUserRequest(postsId))}>
-        get post
-      </button>
-      <li key={users.id}>{users.title}</li>
+      <li key={users?.id}>{users?.title}</li>
 
       <ul>
         {postsId === 0 &&

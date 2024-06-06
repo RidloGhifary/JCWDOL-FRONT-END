@@ -1,6 +1,16 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { fetchUserRequest } from "../features/users/usersSlice";
 
 const Navbar = () => {
+  const { users } = useSelector((state) => state.users);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchUserRequest());
+  }, []);
+
   return (
     <nav className="navbar navbar-expand-lg bg-light">
       <div className="container-fluid">
@@ -21,7 +31,7 @@ const Navbar = () => {
           <ul className="navbar-nav">
             <li className="nav-item">
               <Link className="nav-link" to="/users">
-                User
+                Users <strong>{users?.length}</strong>
               </Link>
             </li>
             <li className="nav-item">
